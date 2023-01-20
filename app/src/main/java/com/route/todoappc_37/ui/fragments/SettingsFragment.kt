@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
+import com.route.todoappc_37.Handlers
 import com.route.todoappc_37.R
 import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 import java.util.*
@@ -28,6 +29,8 @@ class SettingsFragment : Fragment() {
     lateinit var langSpinner : Spinner
     lateinit var modeSpinner : Spinner
     lateinit var preferenceManger  : PreferenceManager
+
+
 
 
     override fun onCreateView(
