@@ -23,6 +23,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/calendarView"
         tools:listitem="@layout/todo_item" />
+    <com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/dragdropRV"
+        app:layout_constraintBTop_toBottomOf="@id/todos_recycler_view"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

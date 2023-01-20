@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.route.todoappc_37.Handlers
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
 
@@ -26,31 +27,28 @@ class MainActivity : AppCompatActivity() {
     lateinit var addTodo: FloatingActionButton
     lateinit var preferenceManger  : PreferenceManager
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         preferenceManger = PreferenceManager(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViews()
-        handleLanguage()
-
-
 
 
 
     }
 
+    override fun onStart() {
+        super.onStart()
 
+        var intentReciver = intent.getBooleanExtra("negro",false)
+        if (intentReciver == true){
 
+        pushFragment(SettingsFragment())
 
+        }
 
-
-
-
-
-
-
-
-
+    }
     fun initViews() {
         bottomNavigationView = findViewById(R.id.home_bottom_navigation_view)
         bottomNavigationView.setOnItemSelectedListener {
@@ -80,18 +78,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun handleLanguage() {
-        if (preferenceManger.getSelection() == 0) {
+    fun flagChecker(flag : Boolean){
 
-            Lingver.getInstance().setLocale(this, "en")
+        if (flag){
 
-
-        } else if (preferenceManger.getSelection() == 1) {
-
-            Lingver.getInstance().setLocale(this, "ar")
-
-
+            pushFragment(SettingsFragment())
         }
+
+
+
     }
 
 

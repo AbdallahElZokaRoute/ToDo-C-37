@@ -12,9 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.kizitonwose.calendar.core.*
 import com.kizitonwose.calendar.view.*
+import com.route.todoappc_37.Handlers
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
 import com.route.todoappc_37.ui.DayViewContainer
+import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -73,5 +75,6 @@ class TodoListFragment : Fragment() {
         val daysOfWeek = daysOfWeek(firstDayOfWeek = DayOfWeek.SATURDAY)
         calendarView.setup(startDate, endDate, daysOfWeek.first())
         calendarView.scrollToWeek(currentDate)
+
     }
 }

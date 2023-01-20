@@ -1,6 +1,7 @@
 package com.route.todoappc_37.ui.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,10 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import com.route.todoappc_37.Handlers
+import com.route.todoappc_37.MyApplication
 import com.route.todoappc_37.R
+import com.route.todoappc_37.designPatterns.Main
+import com.route.todoappc_37.ui.MainActivity
 import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 import java.util.*
 
@@ -29,6 +33,9 @@ class SettingsFragment : Fragment() {
     lateinit var langSpinner : Spinner
     lateinit var modeSpinner : Spinner
     lateinit var preferenceManger  : PreferenceManager
+    var flag : Boolean = false
+
+
 
 
 
@@ -44,9 +51,13 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        flag = false
         langSpinner = view.findViewById(R.id.language_spinner)
         preferenceManger = PreferenceManager(requireContext())
-       var langSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.languages_array,android.R.layout.simple_spinner_item)
+        var handlers = Handlers(preferenceManger)
+        var langSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.languages_array,android.R.layout.simple_spinner_item)
         langSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         langSpinner.adapter = langSpinnerAdapter
         var selectionCurrent: Int = preferenceManger.getSelection()
@@ -64,7 +75,14 @@ class SettingsFragment : Fragment() {
 
                 if (selectionCurrent != position){
                     Toast.makeText(context, "Language has been set to $lang", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(activity,MainActivity::class.java).putExtra("negro",flag)
+
+
+
                     activity?.recreate()
+
+                    startActivity(intent)
 
 
                 }
@@ -99,6 +117,9 @@ class SettingsFragment : Fragment() {
                 if (selectionCurrent2 != position){
                     Toast.makeText(context, "Mode has been set to $mode", Toast.LENGTH_SHORT).show()
 
+                    activity?.recreate()
+
+
                 }
                 selectionCurrent2 = position
 
@@ -111,7 +132,8 @@ class SettingsFragment : Fragment() {
 
 
         }
-        handleMode()
+        handlers.handleMode()
+        handlers.handleLanguage(requireContext())
          }
 
     override fun onResume() {
@@ -121,20 +143,7 @@ class SettingsFragment : Fragment() {
     }
 
 
-    fun handleMode(){
-
-        if (preferenceManger.getMode()==0){
-
-
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
-        else if (preferenceManger.getMode()==1){
-
-
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-
 
     }
 
-    }
+
