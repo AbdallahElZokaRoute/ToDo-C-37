@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">عربي</string>
+    <string-array name="languages_array">
+        <item>English</item>
+        <item>Arabic</item>
+    </string-array>
+    <string-array name="mode_array">
+        <item>فاتح</item>
+        <item>غامق</item>
+    </string-array>
+
+</resources>

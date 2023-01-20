@@ -1,27 +1,55 @@
 package com.route.todoappc_37.ui
 
-import android.content.Intent
+
+import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.route.todoappc_37.R
-import com.route.todoappc_37.designPatterns.Main
-import com.route.todoappc_37.designPatterns.Product
+import com.route.todoappc_37.database.MyDataBase
+
+import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 import com.route.todoappc_37.ui.fragments.AddTodoBottomSheetFragment
 import com.route.todoappc_37.ui.fragments.SettingsFragment
 import com.route.todoappc_37.ui.fragments.TodoListFragment
+import com.yariksoffice.lingver.Lingver
+import com.route.todoappc_37.MyApplication
+
 
 class MainActivity : AppCompatActivity() {
 
+
     lateinit var bottomNavigationView: BottomNavigationView
     lateinit var addTodo: FloatingActionButton
+    lateinit var preferenceManger  : PreferenceManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        preferenceManger = PreferenceManager(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViews()
+        handleLanguage()
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     fun initViews() {
         bottomNavigationView = findViewById(R.id.home_bottom_navigation_view)
@@ -52,7 +80,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-}
+    fun handleLanguage() {
+        if (preferenceManger.getSelection() == 0) {
+
+            Lingver.getInstance().setLocale(this, "en")
+
+
+        } else if (preferenceManger.getSelection() == 1) {
+
+            Lingver.getInstance().setLocale(this, "ar")
+
+
+        }
+    }
+
+
+
+
+    }
 
 
 /*
