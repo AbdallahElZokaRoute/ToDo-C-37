@@ -38,17 +38,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        var intentReciver = intent.getBooleanExtra("negro",false)
-        if (intentReciver == true){
-
-        pushFragment(SettingsFragment())
-
-        }
-
-    }
     fun initViews() {
         bottomNavigationView = findViewById(R.id.home_bottom_navigation_view)
         bottomNavigationView.setOnItemSelectedListener {

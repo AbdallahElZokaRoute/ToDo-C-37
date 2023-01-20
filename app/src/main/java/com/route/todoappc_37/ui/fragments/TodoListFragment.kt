@@ -2,7 +2,6 @@ package com.route.todoappc_37.ui.fragments
 
 import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +11,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.kizitonwose.calendar.core.*
 import com.kizitonwose.calendar.view.*
-import com.route.todoappc_37.Handlers
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
+import com.route.todoappc_37.database.model.Todo
 import com.route.todoappc_37.ui.DayViewContainer
-import com.route.todoappc_37.ui.Prefrences.PreferenceManager
+import com.zerobranch.layout.SwipeLayout
+import com.zerobranch.layout.SwipeLayout.SwipeActionsListener
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
-import java.time.format.TextStyle
 import java.util.*
 
 
@@ -28,10 +27,11 @@ class TodoListFragment : Fragment() {
     lateinit var calendarView: WeekCalendarView
     lateinit var todosRecycler: RecyclerView
     lateinit var adapter: TodosAdapter
+    lateinit var swipeLayout : SwipeLayout
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
@@ -75,6 +75,23 @@ class TodoListFragment : Fragment() {
         val daysOfWeek = daysOfWeek(firstDayOfWeek = DayOfWeek.SATURDAY)
         calendarView.setup(startDate, endDate, daysOfWeek.first())
         calendarView.scrollToWeek(currentDate)
+            /*
 
+
+        swipeLayout.setOnActionsListener(object : SwipeActionsListener {
+
+
+            override fun onOpen(direction: Int, isContinuous: Boolean) {
+                if (direction == SwipeLayout.RIGHT) {
+
+
+                    MyDataBase.getInstance(requireContext()).getTodoDao().deleteTodo(Todo())
+                }
+            }
+
+            override fun onClose() {
+                // the main view has returned to the default state
+            }
+        }) */
     }
 }

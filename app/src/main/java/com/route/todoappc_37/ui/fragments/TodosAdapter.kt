@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.model.Todo
+import com.zerobranch.layout.SwipeLayout
 
 class TodosAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryColor: Int) :
     Adapter<TodosAdapter.TodosViewHolder>() {
@@ -36,7 +37,9 @@ class TodosAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCo
             holder.line.setBackgroundColor(primaryColor)
             holder.checkImage.visibility = View.VISIBLE
             holder.doneTextView.visibility = View.INVISIBLE
+
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -50,5 +53,6 @@ class TodosAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCo
         val checkImage: ImageView = itemView.findViewById(R.id.check_image)
         val line: View = itemView.findViewById(R.id.line)
         val doneTextView: TextView = itemView.findViewById(R.id.done_text)
+
     }
 }
