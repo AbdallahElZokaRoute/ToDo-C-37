@@ -59,6 +59,7 @@ class AddTodoBottomSheetFragment : BottomSheetDialogFragment() {
 
         addTodoButton.setOnClickListener {
             if (validateForm()) {
+                calendar.clearTime()
                 MyDataBase
                     .getInstance(context = requireContext())
                     .getTodoDao()

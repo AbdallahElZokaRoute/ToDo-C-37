@@ -4,26 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@color/white"
     android:padding="8dp">
 
     <TextView
         android:id="@+id/calendarDayText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calenderDayOfWeek"
         app:layout_constraintWidth_percent="0.7"
-        tools:text="Mon" />
+        tools:text="21" />
 
     <TextView
         android:id="@+id/calenderDayOfWeek"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/calendarDayText"
         app:layout_constraintStart_toStartOf="@id/calendarDayText"
-        app:layout_constraintTop_toBottomOf="@id/calendarDayText"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Mon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
