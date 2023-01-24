@@ -25,4 +25,6 @@ interface TodoDao {
 
     @Query("Select * from todoTable where date = :date")
     fun getTodosByDate(date: Date): List<Todo>
+
+
 }

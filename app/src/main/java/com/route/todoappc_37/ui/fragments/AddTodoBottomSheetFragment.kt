@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
@@ -22,6 +23,7 @@ class AddTodoBottomSheetFragment : BottomSheetDialogFragment() {
     lateinit var selectDate: TextView
     lateinit var addTodoButton: Button
     lateinit var calendar: Calendar
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,7 +72,11 @@ class AddTodoBottomSheetFragment : BottomSheetDialogFragment() {
                         )
                     )
                 dismiss()
+
             }
+
+           // activity?.recreate() last resort function to fix the bug.
+
         }
     }
 

@@ -103,6 +103,8 @@ class SettingsFragment : Fragment() {
         langSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         modeSpinner.adapter = modeSpinnerAdapter
 
+
+
         modeSpinner.onItemSelectedListener = object : OnItemSelectedListener{
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -142,8 +144,6 @@ class SettingsFragment : Fragment() {
         modeSpinner.setSelection(preferenceManger.getMode())
     }
 
-
-
-    }
+}
 
 
