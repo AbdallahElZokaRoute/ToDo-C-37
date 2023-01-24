@@ -12,17 +12,20 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.route.todoappc_37.BaseRepository
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
 import com.route.todoappc_37.database.model.Todo
 import java.util.Calendar
 
-class AddTodoBottomSheetFragment : BottomSheetDialogFragment() {
+ class AddTodoBottomSheetFragment : BottomSheetDialogFragment() {
     lateinit var titleEditText: EditText
     lateinit var detailsEditText: EditText
     lateinit var selectDate: TextView
     lateinit var addTodoButton: Button
     lateinit var calendar: Calendar
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,6 +74,7 @@ class AddTodoBottomSheetFragment : BottomSheetDialogFragment() {
                             date = calendar.time
                         )
                     )
+
                 dismiss()
 
             }

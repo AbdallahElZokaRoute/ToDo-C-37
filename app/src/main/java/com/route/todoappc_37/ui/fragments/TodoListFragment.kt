@@ -13,6 +13,7 @@ import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
 import com.ernestoyaquello.dragdropswiperecyclerview.listener.OnItemSwipeListener
 import com.kizitonwose.calendar.core.*
 import com.kizitonwose.calendar.view.*
+import com.route.todoappc_37.BaseRepository
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
 import com.route.todoappc_37.database.model.Todo
@@ -23,12 +24,13 @@ import java.time.YearMonth
 import java.util.*
 
 
-class TodoListFragment : Fragment() {
+ class TodoListFragment : Fragment() {
     lateinit var calendarView: WeekCalendarView
     lateinit var todosRecycler: DragDropSwipeRecyclerView
     lateinit var mAdapter: SwipAdapter
 
-    private val onItemSwipeListener = object : OnItemSwipeListener<Todo> {
+
+     private val onItemSwipeListener = object : OnItemSwipeListener<Todo> {
         override fun onItemSwiped(position: Int, direction: OnItemSwipeListener.SwipeDirection, item: Todo): Boolean {
 
             when (direction) {
@@ -54,7 +56,7 @@ class TodoListFragment : Fragment() {
         super.onResume()
         val todos = MyDataBase.getInstance(requireContext()).getTodoDao().getTodos()
         mAdapter.updateData(todos)
-
+        mAdapter.diffUpdater(todos)
 
     }
 
@@ -64,10 +66,9 @@ class TodoListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         mAdapter = SwipAdapter(null ,ResourcesCompat.getColor(resources, R.color.colorGreen, null),
             ResourcesCompat.getColor(resources, R.color.colorPrimaryBlue, null))
+
 
 
         todosRecycler = view.findViewById(R.id.todos_recycler_view)
@@ -76,6 +77,8 @@ class TodoListFragment : Fragment() {
         todosRecycler.orientation = DragDropSwipeRecyclerView.ListOrientation.VERTICAL_LIST_WITH_UNCONSTRAINED_DRAGGING
         todosRecycler.behindSwipedItemLayoutId = R.layout.behind_swiped
         todosRecycler.swipeListener = onItemSwipeListener
+
+
 
 
 
@@ -102,6 +105,7 @@ class TodoListFragment : Fragment() {
         val daysOfWeek = daysOfWeek(firstDayOfWeek = DayOfWeek.SATURDAY)
         calendarView.setup(startDate, endDate, daysOfWeek.first())
         calendarView.scrollToWeek(currentDate)
+
 
     }
 

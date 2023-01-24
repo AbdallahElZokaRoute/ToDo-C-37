@@ -9,12 +9,12 @@ const val mode = "mode"
 
 class PreferenceManager(val context: Context) {
 
-    fun setSelection(pos: Int) {
+    fun setLanguage(pos: Int) {
         val sharedPref = context.getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE)
         sharedPref.edit().putInt(language, pos).commit()
     }
 
-    fun getSelection(): Int {
+    fun getLanguage(): Int {
         val sharedPref = context.getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE)
         return sharedPref.getInt(language, 0)
     }

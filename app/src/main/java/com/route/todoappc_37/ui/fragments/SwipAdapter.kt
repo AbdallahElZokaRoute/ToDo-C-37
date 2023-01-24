@@ -10,12 +10,21 @@ import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.ernestoyaquello.dragdropswiperecyclerview.listener.OnItemSwipeListener
+import com.ernestoyaquello.dragdropswiperecyclerview.util.DragDropSwipeDiffCallback
+import com.route.todoappc_37.BaseRepository
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
 import com.route.todoappc_37.database.model.Todo
 import java.util.Collections.addAll
+var list500 : List<Todo> = emptyList()
+
+
+
 
 class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryColor: Int) : DragDropSwipeAdapter<Todo, SwipAdapter.ViewHolder>() {
+
+
+
 
 
     fun updateData(todosList: List<Todo>?) {
@@ -25,9 +34,32 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
         this.todosList = todosList
 
         notifyDataSetChanged()
-
     }
 
+
+
+    fun diffUpdater(todosList: List<Todo>?) {
+
+
+            list500 = todosList!!
+
+            notifyDataSetChanged()
+
+
+
+        }
+
+
+
+
+    override fun createDiffUtil(
+        oldList: List<Todo>,
+        newList: List<Todo>
+    ): DragDropSwipeDiffCallback<Todo>? {
+
+
+        return super.createDiffUtil( emptyList(),super.dataSet )
+    }
 
 
 
@@ -89,4 +121,6 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
 
 
 }
+
+
 

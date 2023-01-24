@@ -30,12 +30,12 @@ class Handlers(var preferenceManger: PreferenceManager) {
 
 
     fun handleLanguage(context : Context) {
-        if (preferenceManger.getSelection() == 0) {
+        if (preferenceManger.getLanguage() == 0) {
 
             Lingver.getInstance().setLocale(context, "en")
 
 
-        } else if (preferenceManger.getSelection() == 1) {
+        } else if (preferenceManger.getLanguage() == 1) {
 
             Lingver.getInstance().setLocale(context, "ar")
 

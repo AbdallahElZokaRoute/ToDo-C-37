@@ -1,7 +1,6 @@
 package com.route.todoappc_37.ui.fragments
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +10,10 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import com.route.todoappc_37.Handlers
-import com.route.todoappc_37.MyApplication
 import com.route.todoappc_37.R
-import com.route.todoappc_37.designPatterns.Main
-import com.route.todoappc_37.ui.MainActivity
 import com.route.todoappc_37.ui.Prefrences.PreferenceManager
-import java.util.*
 
 
 class SettingsFragment : Fragment() {
@@ -60,7 +53,7 @@ class SettingsFragment : Fragment() {
         var langSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.languages_array,android.R.layout.simple_spinner_item)
         langSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         langSpinner.adapter = langSpinnerAdapter
-        var selectionCurrent: Int = preferenceManger.getSelection()
+        var selectionCurrent: Int = preferenceManger.getLanguage()
         var selectionCurrent2 : Int = preferenceManger.getMode()
         langSpinner.onItemSelectedListener = object : OnItemSelectedListener{
             override fun onItemSelected(
@@ -69,20 +62,15 @@ class SettingsFragment : Fragment() {
                 position: Int,
                 id: Long,
             ) {
-                preferenceManger.setSelection(position)
+                preferenceManger.setLanguage(position)
 
                 var lang = parent!!.getItemAtPosition(position).toString()
 
                 if (selectionCurrent != position){
                     Toast.makeText(context, "Language has been set to $lang", Toast.LENGTH_SHORT).show()
 
-                    val intent = Intent(activity,MainActivity::class.java).putExtra("negro",flag)
 
-
-
-                    activity?.recreate()
-
-                    startActivity(intent)
+                    handlers.handleLanguage(requireContext())
 
 
                 }
@@ -90,7 +78,7 @@ class SettingsFragment : Fragment() {
 
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                langSpinner.setSelection(preferenceManger.getSelection())
+                langSpinner.setSelection(preferenceManger.getLanguage())
 
             }
 
@@ -118,9 +106,7 @@ class SettingsFragment : Fragment() {
 
                 if (selectionCurrent2 != position){
                     Toast.makeText(context, "Mode has been set to $mode", Toast.LENGTH_SHORT).show()
-
-                    activity?.recreate()
-
+                    handlers.handleMode()
 
                 }
                 selectionCurrent2 = position
@@ -132,15 +118,13 @@ class SettingsFragment : Fragment() {
 
             }
 
-
         }
-        handlers.handleMode()
-        handlers.handleLanguage(requireContext())
+
          }
 
     override fun onResume() {
         super.onResume()
-        langSpinner.setSelection(preferenceManger.getSelection())
+        langSpinner.setSelection(preferenceManger.getLanguage())
         modeSpinner.setSelection(preferenceManger.getMode())
     }
 
