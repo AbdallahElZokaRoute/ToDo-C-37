@@ -61,7 +61,7 @@ class TodoListFragment : Fragment() {
 
             override fun bind(container: DayViewContainer, data: WeekDay) {
                 container.dayTextView.text = data.date.dayOfMonth.toString()
-                container.dayOfWeek.text = data.date.dayOfWeek.toString()
+                container.dayOfWeek.text = data.date.dayOfWeek.getDisplayName(TextStyle.SHORT,Locale.getDefault())
             }
         }
         val currentDate = LocalDate.now()

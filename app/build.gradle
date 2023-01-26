@@ -49,4 +49,10 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     // The view calendar library
     implementation 'com.kizitonwose.calendar:view:2.1.1'
+
+
+    // swipe to delete
+    implementation 'com.ernestoyaquello.dragdropswiperecyclerview:drag-drop-swipe-recyclerview:1.1.1'
+
 }
+

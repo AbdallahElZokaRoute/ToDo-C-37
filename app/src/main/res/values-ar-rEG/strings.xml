@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ToDoAppC-37 | Change App Language</string>
+    <string name="selected_language">Arabic</string>
+    <string name="Add_New_Text">اضافة مهمه جديدة</string>
+    <string name="done">تم</string>
+    <string name="task_name">الإعدادات</string>
+    <string name="selectdate">اختر التاريخ</string>
+    <string name="language">اللغة</string>
+</resources>

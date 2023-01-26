@@ -1,8 +1,12 @@
 package com.route.todoappc_37.ui
 
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.preference.PreferenceManager.*
+import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -12,6 +16,8 @@ import com.route.todoappc_37.designPatterns.Product
 import com.route.todoappc_37.ui.fragments.AddTodoBottomSheetFragment
 import com.route.todoappc_37.ui.fragments.SettingsFragment
 import com.route.todoappc_37.ui.fragments.TodoListFragment
+import java.util.*
+import java.util.prefs.Preferences
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,8 +27,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViews()
-    }
 
+        /*  var change = ""
+        @Suppress("DEPRECATION") val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val language = sharedPreferences.getString("language", "english")
+        if (language == "Arabic") {
+            change="ar"
+        } else if (language=="English" ) {
+            change = "en"
+        }
+        MainActivity.APPLocale = Locale(change)
+    */
+    }
     fun initViews() {
         bottomNavigationView = findViewById(R.id.home_bottom_navigation_view)
         bottomNavigationView.setOnItemSelectedListener {
@@ -50,6 +66,25 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
             .commit()
 
+    }
+
+    companion object {
+        public var APPLocale: Locale? = null
+    }
+
+
+    init {
+        updateConfig(this)
+    }
+
+    fun updateConfig(wrapper: ContextThemeWrapper) {
+        if(APPLocale== Locale("") ) // Do nothing if APPLocale is null
+            return
+
+        Locale.setDefault(APPLocale)
+        val configuration = Configuration()
+        configuration.setLocale(APPLocale)
+        wrapper.applyOverrideConfiguration(configuration)
     }
 
 }
