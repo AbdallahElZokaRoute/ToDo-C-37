@@ -10,4 +10,5 @@ class DayViewContainer(view: View) : ViewContainer(view) {
     val dayTextView: TextView = view.findViewById(R.id.calendarDayText)
     val dayOfWeek: TextView = view.findViewById(R.id.calenderDayOfWeek)
     val selecteddate : LocalDate? = null
+    // This is important comment
 }
