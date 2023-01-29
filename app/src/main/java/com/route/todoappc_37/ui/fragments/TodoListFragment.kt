@@ -24,14 +24,21 @@ import java.time.YearMonth
 import java.util.*
 
 
- class TodoListFragment : Fragment() {
+class TodoListFragment : Fragment() {
     lateinit var calendarView: WeekCalendarView
     lateinit var todosRecycler: DragDropSwipeRecyclerView
     lateinit var mAdapter: SwipAdapter
 
+    /*
+      1- Activity should have reference on fragments
+     */
 
-     private val onItemSwipeListener = object : OnItemSwipeListener<Todo> {
-        override fun onItemSwiped(position: Int, direction: OnItemSwipeListener.SwipeDirection, item: Todo): Boolean {
+    private val onItemSwipeListener = object : OnItemSwipeListener<Todo> {
+        override fun onItemSwiped(
+            position: Int,
+            direction: OnItemSwipeListener.SwipeDirection,
+            item: Todo,
+        ): Boolean {
 
             when (direction) {
                 OnItemSwipeListener.SwipeDirection.LEFT_TO_RIGHT -> onItemSwipedLeft(item)
@@ -54,32 +61,36 @@ import java.util.*
 
     override fun onResume() {
         super.onResume()
-        val todos = MyDataBase.getInstance(requireContext()).getTodoDao().getTodos()
-        mAdapter.updateData(todos)
-        mAdapter.diffUpdater(todos)
+        getTodos()
+
 
     }
 
+    fun getTodos() {
+        if(context ==null)return
+        val todos = MyDataBase.getInstance(requireContext()).getTodoDao().getTodos()
+        mAdapter.updateData(todos)
+    }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mAdapter = SwipAdapter(null ,ResourcesCompat.getColor(resources, R.color.colorGreen, null),
-            ResourcesCompat.getColor(resources, R.color.colorPrimaryBlue, null))
+        mAdapter = SwipAdapter(
+            null, ResourcesCompat.getColor(resources, R.color.colorGreen, null),
+            ResourcesCompat.getColor(resources, R.color.colorPrimaryBlue, null)
+        )
 
 
 
         todosRecycler = view.findViewById(R.id.todos_recycler_view)
         todosRecycler.layoutManager = LinearLayoutManager(context)
         todosRecycler.adapter = mAdapter
-        todosRecycler.orientation = DragDropSwipeRecyclerView.ListOrientation.VERTICAL_LIST_WITH_UNCONSTRAINED_DRAGGING
+        todosRecycler.orientation =
+            DragDropSwipeRecyclerView.ListOrientation.VERTICAL_LIST_WITH_UNCONSTRAINED_DRAGGING
         todosRecycler.behindSwipedItemLayoutId = R.layout.behind_swiped
         todosRecycler.swipeListener = onItemSwipeListener
-
-
-
 
 
 
@@ -106,12 +117,9 @@ import java.util.*
         calendarView.setup(startDate, endDate, daysOfWeek.first())
         calendarView.scrollToWeek(currentDate)
 
-
     }
 
-
     private fun onItemSwipedLeft(todo: Todo) {
-
         MyDataBase.getInstance(requireContext()).getTodoDao().deleteTodo(todo)
     }
 }

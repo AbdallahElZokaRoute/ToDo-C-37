@@ -10,9 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.route.todoappc_37.BaseRepository
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
 import com.route.todoappc_37.database.model.Todo
@@ -24,7 +22,7 @@ import java.util.Calendar
     lateinit var selectDate: TextView
     lateinit var addTodoButton: Button
     lateinit var calendar: Calendar
-
+     var onButtClickListner : OnButtClickLitener ?= null
 
 
     override fun onCreateView(
@@ -74,12 +72,10 @@ import java.util.Calendar
                             date = calendar.time
                         )
                     )
-
+                onButtClickListner?.onButtCLick()
                 dismiss()
 
             }
-
-           // activity?.recreate() last resort function to fix the bug.
 
         }
     }
@@ -100,4 +96,10 @@ import java.util.Calendar
 
     }
 
+}
+
+interface OnButtClickLitener{
+
+
+    fun onButtCLick()
 }

@@ -4,6 +4,7 @@ package com.route.todoappc_37.ui
 import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,11 +14,9 @@ import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
 
 import com.route.todoappc_37.ui.Prefrences.PreferenceManager
-import com.route.todoappc_37.ui.fragments.AddTodoBottomSheetFragment
-import com.route.todoappc_37.ui.fragments.SettingsFragment
-import com.route.todoappc_37.ui.fragments.TodoListFragment
 import com.yariksoffice.lingver.Lingver
 import com.route.todoappc_37.MyApplication
+import com.route.todoappc_37.ui.fragments.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,8 +25,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var bottomNavigationView: BottomNavigationView
     lateinit var addTodo: FloatingActionButton
     lateinit var preferenceManger  : PreferenceManager
-
-
+    lateinit var settingsFragment : SettingsFragment
+    lateinit var todoListFragment : TodoListFragment
+    lateinit var addToDoBottomSheetFragment : AddTodoBottomSheetFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         preferenceManger = PreferenceManager(this)
         super.onCreate(savedInstanceState)
@@ -35,28 +35,60 @@ class MainActivity : AppCompatActivity() {
         initViews()
 
 
-
     }
 
+
+
     fun initViews() {
+        todoListFragment = TodoListFragment()
+        settingsFragment = SettingsFragment()
         bottomNavigationView = findViewById(R.id.home_bottom_navigation_view)
         bottomNavigationView.setOnItemSelectedListener {
             if (it.itemId == R.id.navigation_list) {
 
-                pushFragment(TodoListFragment())
+                pushFragment(todoListFragment)
             } else if (it.itemId == R.id.navigation_settings) {
-                pushFragment(SettingsFragment())
+                pushFragment(settingsFragment)
 
             }
             return@setOnItemSelectedListener true
         }
+        //Communication between 2 fragments
+        // TodoList Fragment <-->Add TodoFragment
+        //Shared ViewModel Mvvm
+
+
 
         bottomNavigationView.selectedItemId = R.id.navigation_list
         addTodo = findViewById(R.id.add_todo)
         addTodo.setOnClickListener {
-            val addToDoBottomSheetFragment = AddTodoBottomSheetFragment()
+            addToDoBottomSheetFragment = AddTodoBottomSheetFragment()
+            addToDoBottomSheetFragment.onButtClickListner = object : OnButtClickLitener{
+                override fun onButtCLick() {
+                    if(todoListFragment.isHidden) return
+                    todoListFragment.getTodos()
+                }
+
+            }
             addToDoBottomSheetFragment.show(supportFragmentManager, null)
 
+        }
+        settingsFragment.onButtClickLitener = object : OnButtClickListener{
+            override fun onButtClick() {
+
+
+         supportFragmentManager.beginTransaction().apply {
+             replace(R.id.fragment_container,settingsFragment)
+             addToBackStack(null)
+             commit()
+
+
+
+         }
+
+
+
+            }
         }
 
     }
@@ -67,21 +99,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun flagChecker(flag : Boolean){
-
-        if (flag){
-
-            pushFragment(SettingsFragment())
-        }
-
-
-
-    }
 
 
 
 
     }
+
 
 
 /*

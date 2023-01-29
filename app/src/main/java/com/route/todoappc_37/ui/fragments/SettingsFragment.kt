@@ -19,19 +19,10 @@ import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 class SettingsFragment : Fragment() {
 
 
-
-
-
-
     lateinit var langSpinner : Spinner
     lateinit var modeSpinner : Spinner
     lateinit var preferenceManger  : PreferenceManager
-    var flag : Boolean = false
-
-
-
-
-
+    var onButtClickLitener : OnButtClickListener ?= null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +37,6 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        flag = false
         langSpinner = view.findViewById(R.id.language_spinner)
         preferenceManger = PreferenceManager(requireContext())
         var handlers = Handlers(preferenceManger)
@@ -107,6 +97,7 @@ class SettingsFragment : Fragment() {
                 if (selectionCurrent2 != position){
                     Toast.makeText(context, "Mode has been set to $mode", Toast.LENGTH_SHORT).show()
                     handlers.handleMode()
+                    onButtClickLitener?.onButtClick()
 
                 }
                 selectionCurrent2 = position
@@ -128,6 +119,11 @@ class SettingsFragment : Fragment() {
         modeSpinner.setSelection(preferenceManger.getMode())
     }
 
+}
+
+interface OnButtClickListener {
+
+    fun onButtClick()
 }
 
 
