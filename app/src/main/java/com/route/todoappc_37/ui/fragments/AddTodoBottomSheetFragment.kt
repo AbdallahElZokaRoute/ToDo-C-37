@@ -22,7 +22,7 @@ import java.util.Calendar
     lateinit var selectDate: TextView
     lateinit var addTodoButton: Button
     lateinit var calendar: Calendar
-     var onButtClickListner : OnButtClickLitener ?= null
+    var onButtClickListner : OnButtonClickLitener ?= null
 
 
     override fun onCreateView(
@@ -62,6 +62,7 @@ import java.util.Calendar
 
         addTodoButton.setOnClickListener {
             if (validateForm()) {
+                calendar.clearTime()
                 MyDataBase
                     .getInstance(context = requireContext())
                     .getTodoDao()
@@ -72,7 +73,7 @@ import java.util.Calendar
                             date = calendar.time
                         )
                     )
-                onButtClickListner?.onButtCLick()
+                onButtClickListner?.onButtonCLick()
                 dismiss()
 
             }
@@ -98,8 +99,8 @@ import java.util.Calendar
 
 }
 
-interface OnButtClickLitener{
+interface OnButtonClickLitener{
 
 
-    fun onButtCLick()
+    fun onButtonCLick()
 }

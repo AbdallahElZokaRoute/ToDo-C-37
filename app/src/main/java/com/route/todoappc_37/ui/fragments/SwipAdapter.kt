@@ -1,21 +1,13 @@
 package com.route.todoappc_37.ui.fragments
 
-import android.app.Activity
-import android.content.Context
-import android.graphics.Canvas
-import android.text.method.TextKeyListener.clear
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
-import com.ernestoyaquello.dragdropswiperecyclerview.listener.OnItemSwipeListener
-import com.ernestoyaquello.dragdropswiperecyclerview.util.DragDropSwipeDiffCallback
-import com.route.todoappc_37.BaseRepository
 import com.route.todoappc_37.R
-import com.route.todoappc_37.database.MyDataBase
 import com.route.todoappc_37.database.model.Todo
-import java.util.Collections.addAll
+
+
 
 
 
@@ -34,8 +26,6 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
 
         notifyDataSetChanged()
     }
-
-
 
 
 
@@ -66,7 +56,6 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
         }
 
     }
-
 
 
 

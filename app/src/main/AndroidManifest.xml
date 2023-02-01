@@ -28,6 +28,7 @@
                 android:value="" />
         </activity>
         <activity
+            android:theme="@style/noActionBar"
             android:name=".ui.MainActivity"
             android:launchMode = "singleInstance"
             android:exported="true">

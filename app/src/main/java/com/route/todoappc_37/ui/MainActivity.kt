@@ -1,21 +1,15 @@
 package com.route.todoappc_37.ui
 
 
-import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.route.todoappc_37.Handlers
 import com.route.todoappc_37.R
-import com.route.todoappc_37.database.MyDataBase
 
 import com.route.todoappc_37.ui.Prefrences.PreferenceManager
-import com.yariksoffice.lingver.Lingver
-import com.route.todoappc_37.MyApplication
 import com.route.todoappc_37.ui.fragments.*
 
 
@@ -28,10 +22,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var settingsFragment : SettingsFragment
     lateinit var todoListFragment : TodoListFragment
     lateinit var addToDoBottomSheetFragment : AddTodoBottomSheetFragment
+    lateinit var textView : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         preferenceManger = PreferenceManager(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+       textView = findViewById(R.id.fragment_name)
         initViews()
 
 
@@ -47,8 +43,13 @@ class MainActivity : AppCompatActivity() {
             if (it.itemId == R.id.navigation_list) {
 
                 pushFragment(todoListFragment)
+                textView.text = "todolist"
+
             } else if (it.itemId == R.id.navigation_settings) {
+
+
                 pushFragment(settingsFragment)
+                textView.text = "settingslist"
 
             }
             return@setOnItemSelectedListener true
@@ -63,8 +64,8 @@ class MainActivity : AppCompatActivity() {
         addTodo = findViewById(R.id.add_todo)
         addTodo.setOnClickListener {
             addToDoBottomSheetFragment = AddTodoBottomSheetFragment()
-            addToDoBottomSheetFragment.onButtClickListner = object : OnButtClickLitener{
-                override fun onButtCLick() {
+            addToDoBottomSheetFragment.onButtClickListner = object : OnButtonClickLitener{
+                override fun onButtonCLick() {
                     if(todoListFragment.isHidden) return
                     todoListFragment.getTodos()
                 }

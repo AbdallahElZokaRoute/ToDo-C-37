@@ -39,8 +39,8 @@ class SettingsFragment : Fragment() {
 
         langSpinner = view.findViewById(R.id.language_spinner)
         preferenceManger = PreferenceManager(requireContext())
-        var handlers = Handlers(preferenceManger)
-        var langSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.languages_array,android.R.layout.simple_spinner_item)
+        val handlers = Handlers(preferenceManger)
+        val langSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.languages_array,android.R.layout.simple_spinner_item)
         langSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         langSpinner.adapter = langSpinnerAdapter
         var selectionCurrent: Int = preferenceManger.getLanguage()
@@ -54,7 +54,7 @@ class SettingsFragment : Fragment() {
             ) {
                 preferenceManger.setLanguage(position)
 
-                var lang = parent!!.getItemAtPosition(position).toString()
+                val lang = parent!!.getItemAtPosition(position).toString()
 
                 if (selectionCurrent != position){
                     Toast.makeText(context, "Language has been set to $lang", Toast.LENGTH_SHORT).show()
@@ -77,7 +77,7 @@ class SettingsFragment : Fragment() {
 
 
         modeSpinner = view.findViewById(R.id.mode_spinner)
-        var modeSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.mode_array,android.R.layout.simple_spinner_item)
+        val modeSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.mode_array,android.R.layout.simple_spinner_item)
         langSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         modeSpinner.adapter = modeSpinnerAdapter
 
@@ -91,7 +91,7 @@ class SettingsFragment : Fragment() {
                 id: Long,
             ) {
                 preferenceManger.setMode(position)
-                var mode = parent!!.getItemAtPosition(position).toString()
+                val mode = parent!!.getItemAtPosition(position).toString()
 
 
                 if (selectionCurrent2 != position){
@@ -106,9 +106,7 @@ class SettingsFragment : Fragment() {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 modeSpinner.setSelection(preferenceManger.getMode())
-
             }
-
         }
 
          }
