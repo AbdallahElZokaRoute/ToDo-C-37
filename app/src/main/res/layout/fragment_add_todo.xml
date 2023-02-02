@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorSecondary"
+    >
 
     <TextView
         android:id="@+id/title"
@@ -14,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorText"
 
         />
 
@@ -29,7 +32,11 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_todo_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="enter your task title"
+            android:textColor="@color/colorText"
+
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,7 +52,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_todo_details"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="enter your task details"
+            android:textColor="@color/colorText"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 

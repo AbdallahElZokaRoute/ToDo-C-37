@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@drawable/roundedforcalender"
     android:layout_margin="8dp"
     android:padding="8dp">
 
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.7"
         app:layout_constraintTop_toBottomOf="@id/calenderDayOfWeek"
-        android:textColor="@color/black"
+        android:textColor="@color/colorText"
         tools:text="Mon" />
 
     <TextView
@@ -28,6 +28,6 @@
         app:layout_constraintEnd_toEndOf="@id/calendarDayText"
         app:layout_constraintStart_toStartOf="@id/calendarDayText"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/black"
+        android:textColor="@color/colorText"
         tools:text="Mon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

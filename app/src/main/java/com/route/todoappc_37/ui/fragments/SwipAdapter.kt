@@ -1,19 +1,23 @@
 package com.route.todoappc_37.ui.fragments
 
+import android.content.res.Resources
+import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.route.todoappc_37.R
+import com.route.todoappc_37.database.MyDataBase
 import com.route.todoappc_37.database.model.Todo
-
-
-
-
+import com.route.todoappc_37.ui.MainActivity
 
 
 class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryColor: Int) : DragDropSwipeAdapter<Todo, SwipAdapter.ViewHolder>() {
 
+    var onImageClickListener : OnImageClickListener ?= null
 
 
 
@@ -39,21 +43,62 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
 
 
 
-
         viewHolder.taskTitle.text = todosList?.get(position)?.todoName
         viewHolder.taskDate.text = todosList?.get(position)?.date.toString()
+
+
+
+
+
+
+
+
         if (todosList?.get(position)?.isDone == true) {
             viewHolder.line.setBackgroundColor(doneColor)
-            viewHolder.checkImage.visibility = View.INVISIBLE
-            viewHolder.doneTextView.visibility = View.VISIBLE
+            viewHolder.checkImage.alpha = 0F
+            viewHolder.doneTextView.alpha = 1F
+            viewHolder.taskTitle.setTextColor(doneColor)
+
 
         } else {
             viewHolder.line.setBackgroundColor(primaryColor)
-            viewHolder.checkImage.visibility = View.VISIBLE
-            viewHolder.doneTextView.visibility = View.INVISIBLE
+            viewHolder.checkImage.alpha = 1F
+            viewHolder.doneTextView.alpha = 0F
+            viewHolder.taskTitle.setTextColor(primaryColor)
+
+        }
+
+
+        viewHolder.checkImage.setOnClickListener {
+
+            if (todosList?.get(position)?.isDone == true) {
+                viewHolder.line.setBackgroundColor(primaryColor)
+                viewHolder.checkImage.alpha = 1F
+                viewHolder.doneTextView.alpha = 0F
+                viewHolder.taskTitle.setTextColor(primaryColor)
+
+
+                todosList!!.get(position).isDone = false
+                onImageClickListener?.onImageClick(item)
+
+
+            }
+            else {
+
+                viewHolder.line.setBackgroundColor(doneColor)
+                viewHolder.taskTitle.setTextColor(doneColor)
+                viewHolder.checkImage.alpha = 0F
+                viewHolder.doneTextView.alpha = 1F
+                onImageClickListener?.onImageClick(item)
+                todosList!!.get(position).isDone = true
+                onImageClickListener?.onImageClick(item)
+
+            }
+            notifyDataSetChanged()
 
 
         }
+
 
     }
 
@@ -73,6 +118,10 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
         return false
     }
 
+    override fun canBeSwiped(item: Todo, viewHolder: ViewHolder, position: Int): Boolean {
+        return super.canBeSwiped(item, viewHolder, position)
+    }
+
 
     class ViewHolder( itemView: View) : DragDropSwipeAdapter.ViewHolder(itemView){
 
@@ -83,10 +132,15 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
         val doneTextView: TextView = itemView.findViewById(R.id.done_text)
 
 
+
     }
 
 
 
+}
+interface OnImageClickListener{
+
+    fun onImageClick(item: Todo)
 }
 
 

@@ -17,5 +17,5 @@ data class Todo(
 
     val date: Date? = null,
 
-    val isDone: Boolean? = null
+    var isDone: Boolean? = null
 )

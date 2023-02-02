@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.kizitonwose.calendar.core.DayPosition
 import com.route.todoappc_37.Handlers
 import com.route.todoappc_37.R
 import com.route.todoappc_37.ui.Prefrences.PreferenceManager
@@ -59,9 +60,7 @@ class SettingsFragment : Fragment() {
                 if (selectionCurrent != position){
                     Toast.makeText(context, "Language has been set to $lang", Toast.LENGTH_SHORT).show()
 
-
                     handlers.handleLanguage(requireContext())
-
 
                 }
                 selectionCurrent = position

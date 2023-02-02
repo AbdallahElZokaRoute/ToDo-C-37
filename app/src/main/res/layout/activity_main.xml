@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_bg"
+    android:background="@color/colorBackground"
     tools:context=".ui.MainActivity">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -23,7 +23,8 @@
                 android:textStyle="bold"
                 android:id="@+id/fragment_name"
                 android:textSize="24sp"
-                android:text="test"
+                android:text=""
+                android:textColor="@color/colorSecondary"
                 >
 
 
@@ -48,6 +49,7 @@
         app:fabCradleMargin="8dp"
         app:fabCradleRoundedCornerRadius="12dp"
         app:fabCradleVerticalOffset="12dp"
+        android:backgroundTint="@color/colorSecondary"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

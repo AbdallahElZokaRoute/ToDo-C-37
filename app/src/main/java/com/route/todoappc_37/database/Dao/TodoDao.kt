@@ -25,6 +25,8 @@ interface TodoDao {
 
     @Query("Select * from todoTable where date = :date")
     fun getTodosByDate(date: Date): List<Todo>
+    @Query("UPDATE todoTable SET isDone = :isDone WHERE id = :id")
+    fun isDoneUpdate(isDone : Boolean , id : Int)
 
 
 }

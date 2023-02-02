@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.TextView
-import android.widget.Toolbar
 import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Database
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
 import com.ernestoyaquello.dragdropswiperecyclerview.listener.OnItemSwipeListener
 import com.kizitonwose.calendar.core.*
@@ -28,10 +24,12 @@ import java.time.format.TextStyle
 import java.util.*
 
 
+
 class TodoListFragment : Fragment() {
     lateinit var calendarView: WeekCalendarView
     lateinit var todosRecycler: DragDropSwipeRecyclerView
     lateinit var mAdapter: SwipAdapter
+
 
 
 
@@ -103,6 +101,19 @@ class TodoListFragment : Fragment() {
             DragDropSwipeRecyclerView.ListOrientation.VERTICAL_LIST_WITH_UNCONSTRAINED_DRAGGING
         todosRecycler.behindSwipedItemLayoutId = R.layout.behind_swiped
         todosRecycler.swipeListener = onItemSwipeListener
+        todosRecycler.reduceItemAlphaOnSwiping = true
+        todosRecycler.disableSwipeDirection(DragDropSwipeRecyclerView.ListOrientation.DirectionFlag.LEFT)
+
+        mAdapter.onImageClickListener = object : OnImageClickListener{
+            override fun onImageClick(item: Todo) {
+
+                MyDataBase.getInstance(requireContext()).getTodoDao().updateTodo(item)
+            }
+
+        }
+
+
+
 
 
 
@@ -163,8 +174,8 @@ class TodoListFragment : Fragment() {
                 }
                 else{
 
-                    container.dayTextView.setTextColor(ResourcesCompat.getColor(resources,R.color.black,null))
-                    container.dayOfWeek.setTextColor(ResourcesCompat.getColor(resources, R.color.black,null))
+                    container.dayTextView.setTextColor(ResourcesCompat.getColor(resources,R.color.colorText,null))
+                    container.dayOfWeek.setTextColor(ResourcesCompat.getColor(resources, R.color.colorText,null))
 
                 }
 
@@ -188,4 +199,7 @@ class TodoListFragment : Fragment() {
     private fun onItemSwipedLeft(todo: Todo) {
         MyDataBase.getInstance(requireContext()).getTodoDao().deleteTodo(todo)
     }
+
+
+
 }

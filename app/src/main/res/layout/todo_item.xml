@@ -3,20 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="120dp"
     android:layout_marginHorizontal="18dp"
     android:layout_marginVertical="8dp"
-    android:background="@color/white">
+    android:background="@drawable/roundedborders">
+
 
     <View
         android:id="@+id/line"
         android:layout_width="4dp"
-        android:layout_height="117dp"
+        android:layout_height="62dp"
         android:layout_marginVertical="8dp"
         android:background="@color/colorPrimaryBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        />
 
     <TextView
         android:id="@+id/task_title"
@@ -29,7 +32,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@id/line"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="This is Task " />
+        tools:text="This is Task" />
 
     <TextView
         android:id="@+id/date_text"
@@ -49,9 +52,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_check"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/date_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
         tools:visibility="visible" />
 
     <TextView
@@ -60,9 +65,12 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorGreen"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@id/date_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/task_title"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Done !" />
+        android:text="Done !"
+        android:textStyle="bold" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

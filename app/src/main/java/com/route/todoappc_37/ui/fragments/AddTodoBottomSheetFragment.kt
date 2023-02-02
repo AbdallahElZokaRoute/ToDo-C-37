@@ -70,7 +70,9 @@ import java.util.Calendar
                         Todo(
                             todoName = titleEditText.text.toString(),
                             todoDescription = detailsEditText.text.toString(),
-                            date = calendar.time
+                            date = calendar.time,
+                            isDone = false
+
                         )
                     )
                 onButtClickListner?.onButtonCLick()

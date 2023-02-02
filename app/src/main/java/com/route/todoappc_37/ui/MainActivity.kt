@@ -43,13 +43,13 @@ class MainActivity : AppCompatActivity() {
             if (it.itemId == R.id.navigation_list) {
 
                 pushFragment(todoListFragment)
-                textView.text = "todolist"
+                textView.text = "To Do List"
 
             } else if (it.itemId == R.id.navigation_settings) {
 
 
                 pushFragment(settingsFragment)
-                textView.text = "settingslist"
+                textView.text = "Settings"
 
             }
             return@setOnItemSelectedListener true
