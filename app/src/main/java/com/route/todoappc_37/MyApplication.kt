@@ -10,6 +10,10 @@ import com.yariksoffice.lingver.Lingver
 
 class MyApplication : Application() {
 
+    companion object {
+        var globalVar = false
+    }
+
 
     override fun onCreate() {
         super.onCreate()
@@ -18,6 +22,7 @@ class MyApplication : Application() {
         val handlers = Handlers(PreferenceManager(context))
         handlers.handleMode()
         handlers.handleLanguage(this)
+
 
 
 

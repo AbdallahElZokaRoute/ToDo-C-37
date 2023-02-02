@@ -11,8 +11,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.kizitonwose.calendar.core.DayPosition
 import com.route.todoappc_37.Handlers
+import com.route.todoappc_37.MyApplication
 import com.route.todoappc_37.R
 import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 
@@ -23,7 +23,6 @@ class SettingsFragment : Fragment() {
     lateinit var langSpinner : Spinner
     lateinit var modeSpinner : Spinner
     lateinit var preferenceManger  : PreferenceManager
-    var onButtClickLitener : OnButtClickListener ?= null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -96,7 +95,8 @@ class SettingsFragment : Fragment() {
                 if (selectionCurrent2 != position){
                     Toast.makeText(context, "Mode has been set to $mode", Toast.LENGTH_SHORT).show()
                     handlers.handleMode()
-                    onButtClickLitener?.onButtClick()
+                    MyApplication.globalVar = true
+
 
                 }
                 selectionCurrent2 = position
@@ -117,10 +117,4 @@ class SettingsFragment : Fragment() {
     }
 
 }
-
-interface OnButtClickListener {
-
-    fun onButtClick()
-}
-
 

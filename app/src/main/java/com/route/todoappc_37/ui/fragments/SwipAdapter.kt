@@ -1,5 +1,6 @@
 package com.route.todoappc_37.ui.fragments
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -37,7 +38,7 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
 
         var taskDate = todosList?.get(position)?.date.toString()
 
-
+        Log.e("moretests", "${taskDate}" )
         taskDate = trimmer(taskDate)
         viewHolder.taskTitle.text = todosList?.get(position)?.todoName
         viewHolder.taskDate.text = taskDate

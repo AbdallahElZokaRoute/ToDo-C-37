@@ -3,10 +3,12 @@ package com.route.todoappc_37.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.route.todoappc_37.MyApplication
 import com.route.todoappc_37.R
 
 import com.route.todoappc_37.ui.Prefrences.PreferenceManager
@@ -74,23 +76,19 @@ class MainActivity : AppCompatActivity() {
             addToDoBottomSheetFragment.show(supportFragmentManager, null)
 
         }
-        settingsFragment.onButtClickLitener = object : OnButtClickListener{
-            override fun onButtClick() {
 
+    }
 
-         supportFragmentManager.beginTransaction().apply {
-             replace(R.id.fragment_container,settingsFragment)
-             addToBackStack(null)
-             commit()
+    override fun onResume() {
+        super.onResume()
 
+        if (MyApplication.globalVar){
 
-
-         }
-
-
-
-            }
+            pushFragment(settingsFragment)
+            MyApplication.globalVar = false
         }
+
+
 
     }
 

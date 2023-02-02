@@ -9,4 +9,5 @@ fun Calendar.clearTime(){
     this.clear(Calendar.MILLISECOND)
     this.clear(Calendar.MINUTE)
     this.clear(Calendar.HOUR)
+    this.clear(Calendar.AM_PM)  // fixes a huge bug
 }
