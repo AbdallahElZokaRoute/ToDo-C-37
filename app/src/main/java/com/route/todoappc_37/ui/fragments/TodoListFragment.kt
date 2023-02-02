@@ -135,6 +135,7 @@ class TodoListFragment : Fragment() {
                         // Keep a reference to any previous selection
                         // in case we overwrite it and need to reload it.
                         val currentSelection = selectedDate
+
                         if (currentSelection == data.date) {
                             // If the user clicks the same date, clear selection.
                             selectedDate = null

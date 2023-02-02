@@ -1,19 +1,11 @@
 package com.route.todoappc_37.ui.fragments
 
-import android.content.res.Resources
-import android.graphics.Color
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
-import androidx.room.util.StringUtil
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.route.todoappc_37.R
-import com.route.todoappc_37.database.MyDataBase
 import com.route.todoappc_37.database.model.Todo
-import com.route.todoappc_37.ui.MainActivity
 
 
 class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryColor: Int) : DragDropSwipeAdapter<Todo, SwipAdapter.ViewHolder>() {
@@ -42,16 +34,13 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
 
     override fun onBindViewHolder(item: Todo, viewHolder: ViewHolder, position: Int) {
 
-        var trimmedTitle = todosList?.get(position)?.date.toString()
-        trimmedTitle = trimmedTitle.substring(0,trimmedTitle.indexOf("00:00:00") )
+
+        var taskDate = todosList?.get(position)?.date.toString()
 
 
-
+        taskDate = trimmer(taskDate)
         viewHolder.taskTitle.text = todosList?.get(position)?.todoName
-        viewHolder.taskDate.text = trimmedTitle
-
-
-
+        viewHolder.taskDate.text = taskDate
 
 
 
@@ -139,6 +128,14 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
 
     }
 
+    fun trimmer(string: String): String {
+
+        val listOfSplitContent = string.split(" ")
+        return listOfSplitContent.joinToString(" ", postfix = " ", limit = 3, truncated = "")
+
+    }
+
+
 
 
 }
@@ -147,5 +144,29 @@ interface OnImageClickListener{
     fun onImageClick(item: Todo)
 }
 
+/*
+         to explain what the hell is this :
+         this was intended to trim down the taskDate. I used substring until 00:00:00 for it.
+         But when I woke up, i found that when adding a task after 12pm, the 00:00:00 part of the line would now be added as
+          12:00:00 instead and throws an outofbound exception of some sort. commented out since a better solution was found.
 
+
+
+
+
+
+        try {
+            trimmedTitle = trimmedTitle.substring(0,trimmedTitle.indexOf("00:00:00") )
+        }
+        catch (e: StringIndexOutOfBoundsException) {
+            Log.e("00:00:00","outofbound")
+        }
+        try {
+            trimmedTitle = trimmedTitle.substring(0,trimmedTitle.indexOf("12:00:00") )
+        }
+        catch (e: StringIndexOutOfBoundsException) {
+            Log.e("12:00:00","outofbound")
+        }
+
+*/
 
