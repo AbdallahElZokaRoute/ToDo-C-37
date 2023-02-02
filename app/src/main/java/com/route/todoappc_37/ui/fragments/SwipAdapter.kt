@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import androidx.room.util.StringUtil
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
@@ -41,10 +42,13 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
 
     override fun onBindViewHolder(item: Todo, viewHolder: ViewHolder, position: Int) {
 
+        var trimmedTitle = todosList?.get(position)?.date.toString()
+        trimmedTitle = trimmedTitle.substring(0,trimmedTitle.indexOf("00:00:00") )
+
 
 
         viewHolder.taskTitle.text = todosList?.get(position)?.todoName
-        viewHolder.taskDate.text = todosList?.get(position)?.date.toString()
+        viewHolder.taskDate.text = trimmedTitle
 
 
 
