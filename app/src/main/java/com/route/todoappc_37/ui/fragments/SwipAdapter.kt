@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.model.Todo
@@ -15,6 +16,7 @@ import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryColor: Int) : DragDropSwipeAdapter<Todo, SwipAdapter.ViewHolder>() {
 
     var onImageClickListener : OnImageClickListener ?= null
+    var preferenceManager : PreferenceManager ?= null
 
 
 
@@ -45,6 +47,18 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
         taskDate = trimmer(taskDate)
         viewHolder.taskTitle.text = todosList?.get(position)?.todoName
         viewHolder.taskDate.text = taskDate
+
+      var context : Context = viewHolder.taskTitle.context
+        preferenceManager = PreferenceManager(context)
+        if ( preferenceManager!!.getLanguage() == 1){
+
+            viewHolder.taskTitle.gravity = Gravity.END
+        }
+        else if( preferenceManager!!.getLanguage() == 0){
+
+            viewHolder.taskTitle.gravity = Gravity.START
+        }
+
 
 
 
