@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">ToDoAppC-37</string>
+        <string-array name="languages_array">
+            <item>English</item>
+            <item>Arabic</item>
+        </string-array>
+    <string-array name="mode_array">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string name="Settings">Settings</string>
+    <string name="Language">Language</string>
+    <string name="Mode">Mode</string>
+    <string name="ToDoList">TO Do List</string>
+    <string name="AddNewTask">Add New Task</string>
+    <string name="EnterTaskTitle">Enter Task Title</string>
+    <string name="EnterTaskDetails">Enter Task Details</string>
+    <string name="SelecteDate">Select Date...</string>
+    <string name="AddnewTaskForButton">Add New Task</string>
+
 </resources>

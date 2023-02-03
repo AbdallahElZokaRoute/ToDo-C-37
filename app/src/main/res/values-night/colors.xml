@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryBlue">#5D9CEC</color>
+    <color name="colorPrimaryBlueVariant">#558BCF</color>
+    <color name="colorSecondary">#141922</color>
+    <color name="color_bg">#DFECDB</color>
+    <color name="colorGreen">#61E757</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="Delete">#EC4B4B </color>
+    <color name="colorBackground">#060E1E</color>
+    <color name="colorText">#FFFFFFFF</color>
+
+</resources>
