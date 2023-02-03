@@ -1,12 +1,15 @@
 package com.route.todoappc_37.ui.fragments
 
+import android.content.Context
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.model.Todo
+import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 
 
 class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryColor: Int) : DragDropSwipeAdapter<Todo, SwipAdapter.ViewHolder>() {
@@ -38,11 +41,10 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
 
         var taskDate = todosList?.get(position)?.date.toString()
 
-        Log.e("moretests", "${taskDate}" )
+
         taskDate = trimmer(taskDate)
         viewHolder.taskTitle.text = todosList?.get(position)?.todoName
         viewHolder.taskDate.text = taskDate
-
 
 
 
@@ -103,7 +105,7 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
         viewHolder: ViewHolder,
         position: Int,
     ): View? {
-       return viewHolder.taskTitle
+       return viewHolder.line
     }
 
 
@@ -124,6 +126,7 @@ class SwipAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCol
         val checkImage: ImageView = itemView.findViewById(R.id.check_image)
         val line: View = itemView.findViewById(R.id.line)
         val doneTextView: TextView = itemView.findViewById(R.id.done_text)
+
 
 
 

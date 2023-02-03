@@ -2,30 +2,28 @@ package com.route.todoappc_37.ui.Prefrences
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import com.route.todoappc_37.ui.Constants
 
-const val PREFERENCE_NAME = "test"
-const val language = "language"
-const val mode = "mode"
 
 class PreferenceManager(val context: Context) {
 
     fun setLanguage(pos: Int) {
-        val sharedPref = context.getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE)
-        sharedPref.edit().putInt(language, pos).commit()
+        val sharedPref = context.getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE)
+        sharedPref.edit().putInt(Constants.language, pos).commit()
     }
 
     fun getLanguage(): Int {
-        val sharedPref = context.getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE)
-        return sharedPref.getInt(language, 0)
+        val sharedPref = context.getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE)
+        return sharedPref.getInt(Constants.language, 0)
     }
     fun setMode(pos: Int) {
-        val sharedPref = context.getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE)
-        sharedPref.edit().putInt(mode, pos).commit()
+        val sharedPref = context.getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE)
+        sharedPref.edit().putInt(Constants.mode, pos).commit()
     }
 
     fun getMode(): Int {
-        val sharedPref = context.getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE)
-        return sharedPref.getInt(mode, 0)
+        val sharedPref = context.getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE)
+        return sharedPref.getInt(Constants.mode, 0)
 
 }
 

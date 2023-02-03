@@ -11,17 +11,16 @@ import com.yariksoffice.lingver.Lingver
 class MyApplication : Application() {
 
     companion object {
-        var globalVar = false
+        var hasModeSwitched = false
+        var hasLanguageSwitched = false
     }
 
 
     override fun onCreate() {
         super.onCreate()
-        Lingver.init(this,"en")
         val context : Context = applicationContext
         val handlers = Handlers(PreferenceManager(context))
         handlers.handleMode()
-        handlers.handleLanguage(this)
 
 
 

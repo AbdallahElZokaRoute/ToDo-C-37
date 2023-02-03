@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:textSize="22sp"
+        android:gravity="start"
         app:layout_constraintBottom_toTopOf="@+id/date_text"
         app:layout_constraintEnd_toStartOf="@id/check_image"
         app:layout_constraintHorizontal_chainStyle="spread_inside"

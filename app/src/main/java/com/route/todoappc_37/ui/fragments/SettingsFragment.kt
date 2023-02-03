@@ -1,6 +1,7 @@
 package com.route.todoappc_37.ui.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.route.todoappc_37.Handlers
 import com.route.todoappc_37.MyApplication
 import com.route.todoappc_37.R
+import com.route.todoappc_37.ui.MainActivity
 import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 
 
@@ -40,7 +42,7 @@ class SettingsFragment : Fragment() {
         langSpinner = view.findViewById(R.id.language_spinner)
         preferenceManger = PreferenceManager(requireContext())
         val handlers = Handlers(preferenceManger)
-        val langSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.languages_array,android.R.layout.simple_spinner_item)
+        val langSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.languages_array,android.R.layout.simple_selectable_list_item)
         langSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         langSpinner.adapter = langSpinnerAdapter
         var selectionCurrent: Int = preferenceManger.getLanguage()
@@ -60,6 +62,10 @@ class SettingsFragment : Fragment() {
                     Toast.makeText(context, "Language has been set to $lang", Toast.LENGTH_SHORT).show()
 
                     handlers.handleLanguage(requireContext())
+                    MyApplication.hasModeSwitched = true
+
+                   activity?.recreate()
+
 
                 }
                 selectionCurrent = position
@@ -75,8 +81,8 @@ class SettingsFragment : Fragment() {
 
 
         modeSpinner = view.findViewById(R.id.mode_spinner)
-        val modeSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.mode_array,android.R.layout.simple_spinner_item)
-        langSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val modeSpinnerAdapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(),R.array.mode_array,android.R.layout.simple_selectable_list_item)
+        modeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         modeSpinner.adapter = modeSpinnerAdapter
 
 
@@ -95,7 +101,7 @@ class SettingsFragment : Fragment() {
                 if (selectionCurrent2 != position){
                     Toast.makeText(context, "Mode has been set to $mode", Toast.LENGTH_SHORT).show()
                     handlers.handleMode()
-                    MyApplication.globalVar = true
+                    MyApplication.hasModeSwitched = true
 
 
                 }

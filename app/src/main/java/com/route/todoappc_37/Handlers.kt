@@ -3,6 +3,7 @@ package com.route.todoappc_37
 import android.content.Context
 
 import androidx.appcompat.app.AppCompatDelegate
+import com.route.todoappc_37.ui.LanguageUtils
 import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 import com.yariksoffice.lingver.Lingver
 
@@ -32,12 +33,13 @@ class Handlers(var preferenceManger: PreferenceManager) {
     fun handleLanguage(context : Context) {
         if (preferenceManger.getLanguage() == 0) {
 
-            Lingver.getInstance().setLocale(context, "en")
+            LanguageUtils.setLocate(context,"en")
+
 
 
         } else if (preferenceManger.getLanguage() == 1) {
 
-            Lingver.getInstance().setLocale(context, "ar")
+            LanguageUtils.setLocate(context,"en")
 
 
         }

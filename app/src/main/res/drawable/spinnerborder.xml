@@ -19,7 +19,7 @@
                     android:color="@color/colorPrimaryBlue"/>
             </shape>
         </item>
-        <item android:gravity="right"
+        <item android:gravity="end"
             android:drawable="@drawable/downarrow" />
     </layer-list></item>
 </selector>

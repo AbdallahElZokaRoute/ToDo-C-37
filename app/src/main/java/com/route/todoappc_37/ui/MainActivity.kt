@@ -1,9 +1,12 @@
 package com.route.todoappc_37.ui
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,13 +23,19 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var bottomNavigationView: BottomNavigationView
     lateinit var addTodo: FloatingActionButton
-    lateinit var preferenceManger  : PreferenceManager
+    lateinit var preferenceManager : PreferenceManager
     lateinit var settingsFragment : SettingsFragment
     lateinit var todoListFragment : TodoListFragment
     lateinit var addToDoBottomSheetFragment : AddTodoBottomSheetFragment
     lateinit var textView : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        preferenceManger = PreferenceManager(this)
+        preferenceManager = PreferenceManager(this)
+        if (preferenceManager.getLanguage() == 1){
+        window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL}
+        else if (preferenceManager.getLanguage() ==0 ){
+            window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LTR}
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
        textView = findViewById(R.id.fragment_name)
@@ -45,13 +54,13 @@ class MainActivity : AppCompatActivity() {
             if (it.itemId == R.id.navigation_list) {
 
                 pushFragment(todoListFragment)
-                textView.text = "To Do List"
+                textView.text = getString(R.string.ToDoList)
 
             } else if (it.itemId == R.id.navigation_settings) {
 
 
                 pushFragment(settingsFragment)
-                textView.text = "Settings"
+                textView.text = getString(R.string.Settings)
 
             }
             return@setOnItemSelectedListener true
@@ -82,23 +91,39 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        if (MyApplication.globalVar){
+        if (MyApplication.hasModeSwitched || MyApplication.hasLanguageSwitched) {
 
             pushFragment(settingsFragment)
-            MyApplication.globalVar = false
+            MyApplication.hasModeSwitched = false
+            MyApplication.hasLanguageSwitched = false
+            textView.text = getString(R.string.Settings)
+
+        }}
+
+    override fun attachBaseContext(newBase: Context?) {
+        preferenceManager = PreferenceManager(newBase!!)
+
+        val position = preferenceManager.getLanguage()
+        var language : String
+        if( position == 0){
+            language = "en"
+        }
+        else{
+            language = "ar"
         }
 
+        super.attachBaseContext(LanguageUtils.setLocate(newBase,language))
 
 
     }
+
+
 
     fun pushFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
             .commit()
 
     }
-
-
 
 
 

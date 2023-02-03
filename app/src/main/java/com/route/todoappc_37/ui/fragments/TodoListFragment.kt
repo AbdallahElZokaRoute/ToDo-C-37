@@ -1,11 +1,13 @@
 package com.route.todoappc_37.ui.fragments
 
-import android.os.Build
+
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import android.widget.TextView
+
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +19,7 @@ import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
 import com.route.todoappc_37.database.model.Todo
 import com.route.todoappc_37.ui.DayViewContainer
+import com.route.todoappc_37.ui.Prefrences.PreferenceManager
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -29,6 +32,7 @@ class TodoListFragment : Fragment() {
     lateinit var calendarView: WeekCalendarView
     lateinit var todosRecycler: DragDropSwipeRecyclerView
     lateinit var mAdapter: SwipAdapter
+    lateinit var textView: TextView
 
 
 
@@ -68,6 +72,7 @@ class TodoListFragment : Fragment() {
         getTodos()
 
 
+
     }
 
     private var selectedDate: LocalDate? = null
@@ -80,11 +85,9 @@ class TodoListFragment : Fragment() {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
 
         mAdapter = SwipAdapter(
@@ -97,6 +100,8 @@ class TodoListFragment : Fragment() {
         todosRecycler = view.findViewById(R.id.todos_recycler_view)
         todosRecycler.layoutManager = LinearLayoutManager(context)
         todosRecycler.adapter = mAdapter
+
+
         todosRecycler.orientation =
             DragDropSwipeRecyclerView.ListOrientation.VERTICAL_LIST_WITH_UNCONSTRAINED_DRAGGING
         todosRecycler.behindSwipedItemLayoutId = R.layout.behind_swiped
@@ -126,7 +131,7 @@ class TodoListFragment : Fragment() {
             }
 
             override fun bind(container: DayViewContainer, data: WeekDay) {
-                var calendar : Calendar = Calendar.getInstance()
+                val calendar : Calendar = Calendar.getInstance()
                 container.dayTextView.text = data.date.dayOfMonth.toString()
                 container.dayOfWeek.text = data.date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
                 container.view.setOnClickListener {
@@ -194,6 +199,7 @@ class TodoListFragment : Fragment() {
         val daysOfWeek = daysOfWeek(firstDayOfWeek = DayOfWeek.SATURDAY)
         calendarView.setup(startDate, endDate, daysOfWeek.first())
         calendarView.scrollToWeek(currentDate)
+
 
     }
 

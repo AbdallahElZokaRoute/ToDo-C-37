@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Language"
+        android:text="@string/Language"
         android:textStyle="bold"
         android:layout_marginTop="30dp"
         android:layout_marginStart="40dp"
@@ -21,6 +21,7 @@
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/language_spinner"
         android:layout_width="match_parent"
+        android:overlapAnchor="false"
         android:layout_height="48dp"
         android:background="@drawable/spinnerborder"
         app:layout_constraintTop_toBottomOf="@id/language_text"
@@ -34,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mode"
+        android:text="@string/Mode"
         android:layout_marginTop="30dp"
         android:id="@+id/mode_text"
         android:textStyle="bold"
@@ -50,6 +51,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/spinnerborder"
+        android:overlapAnchor="false"
         app:layout_constraintTop_toBottomOf="@id/mode_text"
 app:layout_constraintStart_toStartOf="@id/language_spinner"
         app:layout_constraintLeft_toLeftOf="parent"

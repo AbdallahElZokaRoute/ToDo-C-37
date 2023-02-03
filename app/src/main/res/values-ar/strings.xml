@@ -1,12 +1,21 @@
 <resources>
-    <string name="app_name">عربي</string>
+    <string name="app_name">ToDoApp</string>
     <string-array name="languages_array">
-        <item>English</item>
-        <item>Arabic</item>
+        <item>اللغه الانجليزيه</item>
+        <item>اللغه العربيه</item>
     </string-array>
     <string-array name="mode_array">
         <item>فاتح</item>
         <item>غامق</item>
     </string-array>
+    <string name="Settings">الاعدادات</string>
+    <string name="Language">اللغه</string>
+    <string name="Mode">الوضع</string>
+    <string name="ToDoList">قائمه المهام</string>
+    <string name="AddNewTask">اضافه مهمه جديده</string>
+    <string name="EnterTaskTitle">ادخل اسم المهمه</string>
+    <string name="EnterTaskDetails">ادخل تفاصيل المهمه</string>
+    <string name="SelecteDate">اختر التاريخ...</string>
+    <string name="AddnewTaskForButton">اضف مهمه جديده</string>
 
 </resources>
