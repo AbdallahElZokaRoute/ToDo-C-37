@@ -1,5 +1,6 @@
 package com.route.todoappc_37.ui
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
@@ -26,19 +27,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initViews()
-
-        /*  var change = ""
-        @Suppress("DEPRECATION") val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val language = sharedPreferences.getString("language", "english")
-        if (language == "Arabic") {
-            change="ar"
-        } else if (language=="English" ) {
-            change = "en"
-        }
-        MainActivity.APPLocale = Locale(change)
-    */
     }
+
+    override fun onStart() {
+        super.onStart()
+        initViews()
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+
+        val language =
+            LocalStorageUtils.getInstance(newBase!!).getString(Constants.LANGUAGE_KEY, "en")
+        super.attachBaseContext(LanguageUtils.setLocale(newBase, language!!))
+    }
+
     fun initViews() {
         bottomNavigationView = findViewById(R.id.home_bottom_navigation_view)
         bottomNavigationView.setOnItemSelectedListener {
@@ -52,8 +54,11 @@ class MainActivity : AppCompatActivity() {
             return@setOnItemSelectedListener true
         }
 
-        bottomNavigationView.selectedItemId = R.id.navigation_list
+
         addTodo = findViewById(R.id.add_todo)
+        // onStop
+
+        // onStart
         addTodo.setOnClickListener {
             val addToDoBottomSheetFragment = AddTodoBottomSheetFragment()
             addToDoBottomSheetFragment.show(supportFragmentManager, null)
@@ -62,29 +67,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        bottomNavigationView.selectedItemId = R.id.navigation_list
+    }
+
     fun pushFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
             .commit()
 
-    }
-
-    companion object {
-        public var APPLocale: Locale? = null
-    }
-
-
-    init {
-        updateConfig(this)
-    }
-
-    fun updateConfig(wrapper: ContextThemeWrapper) {
-        if(APPLocale== Locale("") ) // Do nothing if APPLocale is null
-            return
-
-        Locale.setDefault(APPLocale)
-        val configuration = Configuration()
-        configuration.setLocale(APPLocale)
-        wrapper.applyOverrideConfiguration(configuration)
     }
 
 }

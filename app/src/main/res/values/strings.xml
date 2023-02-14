@@ -4,23 +4,26 @@
     <string name="selected_language">English</string>
 
 
-
     <string-array name="Language_list">
- <item>English</item>
-      <item>Arabic</item>
-        </string-array>
+        <item>Select Language</item>
+        <item>English</item>
+        <item>Arabic</item>
+    </string-array>
 
 
-       <string-array name= "Mode_list">
- <item>Light</item>
-      <item>Night</item>
-        </string-array>
+    <string-array name="Mode_list">
+        <item>Select Mode</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
     <string name="Add_New_Text">Add New Task</string>
     <string name="selectdate">Select Date</string>
     <string name="task_name">Task Name</string>
 
     <string name="done">Done</string>
     <string name="language">language</string>
+    <string name="settings">Settings</string>
+    <string name="mode">Mode</string>
 
 
 </resources>

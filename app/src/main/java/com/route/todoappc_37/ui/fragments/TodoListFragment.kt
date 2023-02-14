@@ -2,7 +2,6 @@ package com.route.todoappc_37.ui.fragments
 
 import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import com.kizitonwose.calendar.view.*
 import com.route.todoappc_37.R
 import com.route.todoappc_37.database.MyDataBase
 import com.route.todoappc_37.ui.DayViewContainer
+import com.route.todoappc_37.ui.fragments.adapters.TodosAdapter
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth

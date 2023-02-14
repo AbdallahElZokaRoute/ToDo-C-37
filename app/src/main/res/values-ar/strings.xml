@@ -12,7 +12,7 @@
         <item>فاتح</item>
         <item>غامق</item>
     </string-array>
-    <string name="app_name">ToDoAppC-37 | Change App Language</string>
+    <string name="app_name">ToDoAppC-37</string>
     <string name="selected_language">Arabic</string>
     <string name="Add_New_Text">اضافة مهمه جديدة</string>
     <string name="done">تم</string>
