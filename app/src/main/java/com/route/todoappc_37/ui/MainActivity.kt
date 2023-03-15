@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.route.todoappc_37.R
+import com.route.todoappc_37.callbacks.OnAddTodoListener
+import com.route.todoappc_37.database.model.Todo
 import com.route.todoappc_37.designPatterns.Main
 import com.route.todoappc_37.designPatterns.Product
 import com.route.todoappc_37.ui.fragments.AddTodoBottomSheetFragment
@@ -20,10 +22,11 @@ import com.route.todoappc_37.ui.fragments.TodoListFragment
 import java.util.*
 import java.util.prefs.Preferences
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnAddTodoListener {
 
     lateinit var bottomNavigationView: BottomNavigationView
     lateinit var addTodo: FloatingActionButton
+    private val todoListFragment: TodoListFragment = TodoListFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         val language = LocalStorageUtils.getInstance(this.applicationContext)
             .getString(Constants.LANGUAGE_KEY, "en")
@@ -51,8 +54,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView = findViewById(R.id.home_bottom_navigation_view)
         bottomNavigationView.setOnItemSelectedListener {
             if (it.itemId == R.id.navigation_list) {
-
-                pushFragment(TodoListFragment())
+                pushFragment(todoListFragment)
             } else if (it.itemId == R.id.navigation_settings) {
                 pushFragment(SettingsFragment())
 
@@ -67,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         // onStart
         addTodo.setOnClickListener {
             val addToDoBottomSheetFragment = AddTodoBottomSheetFragment()
+            addToDoBottomSheetFragment.onAddTodoListener = this
             addToDoBottomSheetFragment.show(supportFragmentManager, null)
 
         }
@@ -81,6 +84,11 @@ class MainActivity : AppCompatActivity() {
     fun pushFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
             .commit()
+
+    }
+
+    override fun onAddedTodo() {
+        todoListFragment.getTodosFromDatabase()
 
     }
 

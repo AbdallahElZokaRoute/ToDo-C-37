@@ -5,6 +5,8 @@
     <color name="color_bg">#DFECDB</color>
     <color name="colorGreen">#61E757</color>
     <color name="black">#FF000000</color>
-    <color name="white">#EFEFEF</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorRed">#EC4B4B</color>
+    <color name="white2">#EFEFEF</color>
     <color name="red">#FFA42A2A</color>
 </resources>
