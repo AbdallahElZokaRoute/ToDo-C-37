@@ -25,6 +25,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var bottomNavigationView: BottomNavigationView
     lateinit var addTodo: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
+        val language = LocalStorageUtils.getInstance(this.applicationContext)
+            .getString(Constants.LANGUAGE_KEY, "en")
+        LanguageUtils.setLocale(
+            this.baseContext,
+            language!!
+        )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
