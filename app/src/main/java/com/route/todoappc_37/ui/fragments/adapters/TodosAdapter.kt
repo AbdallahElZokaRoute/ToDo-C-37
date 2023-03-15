@@ -1,6 +1,5 @@
-package com.route.todoappc_37.ui.fragments
+package com.route.todoappc_37.ui.fragments.adapters
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.route.todoappc_37.R
+import com.route.todoappc_37.callbacks.OnDeleteClickListener
 import com.route.todoappc_37.database.model.Todo
 
 class TodosAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryColor: Int) :
@@ -29,12 +29,23 @@ class TodosAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCo
     override fun onBindViewHolder(holder: TodosViewHolder, position: Int) {
         holder.taskTitle.text = todosList?.get(position)!!.todoName
         holder.taskDate.text = todosList?.get(position)?.date.toString()
+
         if (todosList?.get(position)?.isDone == true) {
-            holder.line.setBackgroundColor(doneColor)
+            holder.line.setBackgroundColor(
+                ResourcesCompat.getColor(
+                    holder.itemView.resources, R.color.colorGreen, null
+                )
+            )
             holder.checkImage.visibility = View.INVISIBLE
             holder.doneTextView.visibility = View.VISIBLE
         } else {
-            holder.line.setBackgroundColor(primaryColor)
+            holder.line.setBackgroundColor(
+                ResourcesCompat.getColor(
+                    holder.itemView.resources,
+                    R.color.colorPrimaryBlue,
+                    null
+                )
+            )
             holder.checkImage.visibility = View.VISIBLE
             holder.doneTextView.visibility = View.INVISIBLE
         }
@@ -61,7 +72,3 @@ class TodosAdapter(var todosList: List<Todo>?, val doneColor: Int, val primaryCo
     }
 }
 
-interface OnDeleteClickListener {
-    fun onDeleteClick(todo: Todo, position: Int)
-
-}

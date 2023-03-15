@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/calenderDayOfWeek"
         app:layout_constraintWidth_percent="0.7"
-        tools:text="21" />
+        tools:text="Mon" />
 
     <TextView
         android:id="@+id/calenderDayOfWeek"

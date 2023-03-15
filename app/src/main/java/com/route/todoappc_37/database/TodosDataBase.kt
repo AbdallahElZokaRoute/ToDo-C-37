@@ -11,16 +11,16 @@ import com.route.todoappc_37.database.model.Todo
 
 @Database(entities = [Todo::class], version = 1)
 @TypeConverters(Converters::class)
-abstract class MyDataBase : RoomDatabase() {
+abstract class TodosDataBase : RoomDatabase() {
     abstract fun getTodoDao(): TodoDao
 
     companion object {
-        var INSTANCE: MyDataBase? = null
-        fun getInstance(context: Context): MyDataBase {
+        var INSTANCE: TodosDataBase? = null
+        fun getInstance(context: Context): TodosDataBase {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
                     context.applicationContext,
-                    MyDataBase::class.java,
+                    TodosDataBase::class.java,
                     "TodoDB"
                 ).fallbackToDestructiveMigration()
                     .allowMainThreadQueries()

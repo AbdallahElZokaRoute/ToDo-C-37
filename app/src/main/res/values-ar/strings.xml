@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Language_list">
+        <item>إختار اللغة</item>
+        <item>اللغة الإنجليزية</item>
+        <item>عربي</item>
+    </string-array>
+
+
+    <string-array name="Mode_list">
+        <item>إختار المود</item>
+        <item>فاتح</item>
+        <item>غامق</item>
+    </string-array>
+    <string name="app_name">ToDoAppC-37</string>
+    <string name="selected_language">Arabic</string>
+    <string name="Add_New_Text">اضافة مهمه جديدة</string>
+    <string name="done">تم</string>
+    <string name="task_name">الإعدادات</string>
+    <string name="selectdate">اختر التاريخ</string>
+    <string name="language">اللغة</string>
+    <string name="settings">الإعدادات</string>
+    <string name="mode">الوضع</string>
+</resources>
